@@ -14,8 +14,8 @@ def show_history(h):
     plt.legend()
     plt.show()
 
-test = pd.read_csv('./data/test.csv', index_col=0)
-train = pd.read_csv('./data/train.csv', index_col=0)
+test = pd.read_csv('./test_nlp/data/test.csv', index_col=0)
+train = pd.read_csv('./test_nlp/data/train.csv', index_col=0)
 
 tokenizer = tf.keras.preprocessing.text.Tokenizer(num_words=10000, oov_token="<OOV>")
 tokenizer.fit_on_texts(train['excerpt'])
@@ -31,12 +31,8 @@ def get_sequences(tokenizer, text):
 padded_train_seq = get_sequences(tokenizer, train['excerpt'])
 
 # saving
-with open('./data/tokenizer.pickle', 'wb') as handle:
+with open('./test_nlp/data/tokenizer.pickle', 'wb') as handle:
     pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
-
-# loading
-# with open('tokenizer.pickle', 'rb') as handle:
-#     tokenizer = pickle.load(handle)
 
 model = tf.keras.models.Sequential([
         tf.keras.layers.Embedding(10000, 16, input_length=maxlen),
@@ -64,5 +60,5 @@ history = model.fit(
 )
 
 show_history(history)
-model.save_weights('./data/test_model')
+model.save('./test_nlp/data/test_model.h5')
 

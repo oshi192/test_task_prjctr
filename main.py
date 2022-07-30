@@ -1,20 +1,13 @@
 import pickle
 import tensorflow as tf
 from fastapi import FastAPI
+
 maxlen=190
 
 with open('./test_nlp/data/tokenizer.pickle', 'rb') as handle:
     tokenizer = pickle.load(handle)
 
-# Restore the weights
-model = tf.keras.models.Sequential([
-        tf.keras.layers.Embedding(10000, 16, input_length=maxlen),
-        tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(20, return_sequences=True)),
-        tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(20)),
-        tf.keras.layers.Dense(190, activation='relu'),
-        tf.keras.layers.Dense(1, activation='linear')
-])
-model.load_weights('./test_nlp/data/test_model')
+model = tf.keras.models.load_model("./test_nlp/data/test_model.h5")
 
 def make_predict(text: str):
         sequence = tokenizer.texts_to_sequences([text])
@@ -24,6 +17,6 @@ def make_predict(text: str):
 
 app = FastAPI()
 
-@app.get("/test-nlp")
+@app.get("/")
 def read_classification(text: str):
         return str(make_predict(text))

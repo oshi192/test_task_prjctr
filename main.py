@@ -1,15 +1,6 @@
-import subprocess
-import sys
-
-def install(package):
-    subprocess.check_call([sys.executable, "-m", "pip3", "install", package])
-install('fastapi')
-install('pickle')
-
 import pickle
 import tensorflow as tf
 from fastapi import FastAPI
-
 maxlen=190
 
 with open('./test_nlp/data/tokenizer.pickle', 'rb') as handle:

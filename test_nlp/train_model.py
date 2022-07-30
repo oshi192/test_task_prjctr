@@ -14,8 +14,8 @@ def show_history(h):
     plt.legend()
     plt.show()
 
-test = pd.read_csv('test.csv', index_col=0)
-train = pd.read_csv('train.csv', index_col=0)
+test = pd.read_csv('./data/test.csv', index_col=0)
+train = pd.read_csv('./data/train.csv', index_col=0)
 
 tokenizer = tf.keras.preprocessing.text.Tokenizer(num_words=10000, oov_token="<OOV>")
 tokenizer.fit_on_texts(train['excerpt'])

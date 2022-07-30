@@ -1,3 +1,13 @@
+import sys
+import subprocess
+
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+install('matplotlib')
+install('pandas')
+install('pandas')
+install('tensorflow')
+
 import tensorflow as tf
 import matplotlib.pyplot as plt
 import pandas as pd

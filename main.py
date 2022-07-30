@@ -1,13 +1,21 @@
+import subprocess
+import sys
+
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip3", "install", package])
+install('fastapi')
+install('pickle')
+
+import pickle
 import tensorflow as tf
 from fastapi import FastAPI
 
-import pickle
 maxlen=190
 
 with open('./test_nlp/data/tokenizer.pickle', 'rb') as handle:
     tokenizer = pickle.load(handle)
-# Restore the weights
 
+# Restore the weights
 model = tf.keras.models.Sequential([
         tf.keras.layers.Embedding(10000, 16, input_length=maxlen),
         tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(20, return_sequences=True)),

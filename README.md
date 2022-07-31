@@ -15,6 +15,10 @@ Coding task:
        ```antlrv4
        python3 ./test_nlp/train_model.py
        ```
+       or if previous don't work
+       ```antlrv4
+       python ./test_nlp/train_model.py
+       ```
        model will be saved to file _/test_nlp/data/test_model.h5_ \
        and tokenizer to _/test_nlp/data/tokenizer.pickle_
 ### Step 2:
@@ -31,5 +35,8 @@ Coding task:
        ```
        it will start api server on localhost with single endpoint
      - go to [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) to test the endpoint
-  - Step 3:
-   - 
+### Step 3:
+   - the code for step3 layed on [deploy_branch](https://github.com/oshi192/test_task_prjctr/tree/deploy_branch)
+   - app was deploed to heroku
+     [link to check:](https://prjctrtestapp6.herokuapp.com/docs)\
+     short link: [https://bit.ly/3cWnpkX](https://bit.ly/3cWnpkX)
